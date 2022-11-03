@@ -23,7 +23,7 @@ class CompleteReport(SimpleReport):
         simple_report = SimpleReport.generate(product_list)
 
         return (
-            f'{simple_report}\n'
-            f'Produtos estocados por empresa: \n'
+            f'{simple_report}'
+            f'\nProdutos estocados por empresa:\n'
             f'{string}'
         )
