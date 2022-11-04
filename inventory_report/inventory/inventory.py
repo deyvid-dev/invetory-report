@@ -11,17 +11,21 @@ class Inventory:
         if path.endswith(".csv"):
             with open(path, encoding="utf-8") as file:
                 lista = list(csv.DictReader(file))
+                return cls.import_type(type, lista)
 
-        if path.endswith(".json"):
+        elif path.endswith(".json"):
             with open(path) as file:
                 lista = json.load(file)
+                return cls.import_type(type, lista)
 
-        if path.endswith(".xml"):
+        elif path.endswith(".xml"):
             with open(path) as file:
                 lista = xmltodict.parse(file.read())["dataset"]["record"]
+                return cls.import_type(type, lista)
 
+    def import_type(type, list):
         if type == "simples":
-            return SimpleReport.generate(lista)
+            return SimpleReport.generate(list)
 
         elif type == "completo":
-            return CompleteReport.generate(lista)
+            return CompleteReport.generate(list)
